@@ -1,0 +1,26 @@
+diff --git a/src/plugins/nat/nat44-ed/nat44_ed.h b/src/plugins/nat/nat44-ed/nat44_ed.h
+index 8fd5007..99520f8 100644
+--- a/src/plugins/nat/nat44-ed/nat44_ed.h
++++ b/src/plugins/nat/nat44-ed/nat44_ed.h
+@@ -37,7 +37,7 @@
+ #include <nat/lib/inlines.h>
+ 
+ /* default number of worker handoff frame queue elements */
+-#define NAT_FQ_NELTS_DEFAULT 64
++#define NAT_FQ_NELTS_DEFAULT 2048
+ 
+ /* NAT buffer flags */
+ #define SNAT_FLAG_HAIRPINNING (1 << 0)
+diff --git a/src/plugins/nat/nat44-ei/nat44_ei.h b/src/plugins/nat/nat44-ei/nat44_ei.h
+index 055f81c..4e25d32 100644
+--- a/src/plugins/nat/nat44-ei/nat44_ei.h
++++ b/src/plugins/nat/nat44-ei/nat44_ei.h
+@@ -38,7 +38,7 @@
+ #include <nat/lib/inlines.h>
+ 
+ /* default number of worker handoff frame queue elements */
+-#define NAT_FQ_NELTS_DEFAULT 64
++#define NAT_FQ_NELTS_DEFAULT 2048
+ 
+ /* External address and port allocation modes */
+ #define foreach_nat44_ei_addr_and_port_alloc_alg                              \

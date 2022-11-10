@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  vpp:
+    container_name: vpp
+    build: .
+    volumes:
+      - /mnt/huge1G:/mnt/huge1G
+      - /mnt/hugepages2M:/mnt/hugepages2M
+      - /var/run/dpdk:/var/run/dpdk
+      - /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages
+      - /sys/devices/system/node:/sys/devices/system/node
+      - /sys/bus/pci/drivers:/sys/bus/pci/drivers
+      - /dev:/dev
+      - /lib/modules/:/lib/modules/
+      - /lib/firmware:/lib/firmware/
+      - ./vpp.log:/home/user/vpp.log
+    privileged: true
