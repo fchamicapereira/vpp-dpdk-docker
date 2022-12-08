@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
-RUN apt update
-RUN apt install -y iproute2 git make sudo vim pciutils net-tools python3
+RUN apt update --fix-missing
+RUN apt install -y iproute2 git make sudo vim pciutils net-tools python2.7
 
 RUN useradd -m user
 RUN echo "user:user" | chpasswd
@@ -24,13 +24,17 @@ RUN git clone \
 
 WORKDIR /home/user/vpp
 
-COPY --chown=user:user increase-nat-frame-queue-size.patch /home/user/vpp/
+COPY --chown=user:user increase-nat-frame-queue-size.patch .
 RUN git apply increase-nat-frame-queue-size.patch
 
 RUN yes | make install-deps
 RUN make build-release
 
-COPY --chown=user:user vpp-startup.conf /home/user/
-COPY --chown=user:user nat.vpp /home/user/
+RUN mkdir nfs
+RUN mkdir scripts
 
-CMD [ "sudo", "./build-root/install-vpp-native/vpp/bin/vpp", "-c", "/home/user/vpp-startup.conf" ]
+COPY --chown=user:user nfs nfs
+COPY --chown=user:user scripts scripts
+COPY --chown=user:user vpp-startup.conf .
+
+CMD [ "./scripts/run-vpp.sh" ]

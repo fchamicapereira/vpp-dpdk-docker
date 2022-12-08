@@ -16,3 +16,4 @@ services:
       - /lib/firmware:/lib/firmware/
       - ./vpp.log:/home/user/vpp.log
     privileged: true
+    # command: [ "tail", "-f", "/dev/null" ]

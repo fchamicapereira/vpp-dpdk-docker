@@ -1,0 +1,8 @@
+set interface promiscuous on lan
+set interface promiscuous on wan
+
+set int state lan up
+set int state wan up
+
+set int l2 bridge lan 1
+set int l2 bridge wan 1
