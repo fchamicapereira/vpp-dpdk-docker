@@ -1,0 +1,15 @@
+set int promiscuous on lan
+set int promiscuous on wan
+
+set int state lan up
+set int state wan up
+
+set int ip address lan 10.0.0.1/24
+set int ip address wan 10.0.10.1/24
+
+nat44 ei enable sessions 65536 users 65536
+nat44 ei add int address wan
+set int nat44 ei in lan out wan
+
+ip neighbor wan 10.0.10.1 dead.beef.babe
+ip route add 0.0.0.0/0 via 10.0.10.1 wan
